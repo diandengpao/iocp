@@ -128,6 +128,7 @@ void workerThreadFun(void* _wokerPara) {
 			if (ioBytes == 0) {
 				cout << "客户端 " << inet_ntoa(socketHandle->addr.sin_addr) << ':' << ntohs(socketHandle->addr.sin_port) << " 断开连接" << endl;
 				closesocket(socketHandle->socket);
+				wokerPara->removeClient(socketHandle);
 			}
 			else if (cIO->type == RECV) {
 			//1.数据处理&删除io
